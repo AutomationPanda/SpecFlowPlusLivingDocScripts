@@ -3,6 +3,10 @@
 This repository contains PowerShell scripts for modifying
 [SpecFlow+ LivingDoc](https://docs.specflow.org/projects/specflow-livingdoc/en/latest/index.html) reports.
 
+Please read my article,
+[Improving Teamwork with SpecFlow+ LivingDoc](https://automationpanda.com/2021/02/09/improving-teamwork-with-specflow-livingdoc/),
+to learn more about the value LivingDoc provides.
+
 
 ## Why Modify LivingDoc?
 
