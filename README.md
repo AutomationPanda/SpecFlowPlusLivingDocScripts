@@ -18,9 +18,42 @@ You can then modify this feature data and use it to generate a modified HTML rep
 The scripts in this repository modify feature data JSON files.
 Here are the steps for using them:
 
+### PreRequisites
+1. clone / download the repo / copy the .ps1 scripts
+2. make them executable, e.g. [Set-ExecutionPolicy](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-7.2#example-1-set-an-execution-policy) or [unblock](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-7.2#example-7-unblock-a-script-to-run-it-without-changing-the-execution-policy)
+3. add the location of the scripts to your OS path so you can run them from anywhere
+
 1. Generate a feature data JSON file from a SpecFlow test assembly (.dll) using `livingdoc test-assembly --output-type JSON <testAssembly>`.
+     -  from your project's output dir
+```
+PS> livingdoc.exe test-assembly --output-type JSON .\<YourAssembly>.dll  
+
+Framework: .NET 5.0.15
+<OutputDir>\FeatureData.json was successfully generated.
+
+```
+  
 2. Run the feature data JSON modification script(s).
+      - example with [RemoveSkippedScenarios.ps1](RemoveSkippedScenarios.ps1):
+```
+PS> RemoveSkippedScenarios.ps1 <OutputDir>\TestExecution.json  <OutputDir>\FeatureData.json result.json
+
+Reading '<OutputDir>\FeatureData.json'
+Reading '<OutputDir>\TestExecution.json'
+Hashing each Test Execution scenario from '<OutputDir>\TestExecution.json'
+1 Test Execution scenario(s) found
+Pruning unexecuted scenarios from Feature Data
+Saving the pruned Feature Data to 'result.json' 
+```
+   
 3. Generate a LivingDoc HTML report with the modified feature data JSON file using `livingdoc feature-data <featureDataJson>`.
+```
+PS> livingdoc.exe feature-data .\result.json --output-type HTML
+Framework: .NET 5.0.15
+<OutputDir>\LivingDoc.html was successfully generated.
+
+```
+4. Open in your default browser `PS> <OutputDir> Invoke-Item .\LivingDoc.html`
 
 
 ## Scripts
