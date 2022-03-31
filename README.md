@@ -50,6 +50,35 @@ Here are the steps for using them from PowerShell:
    * `livingdoc feature-data <featureDataJson>`
 
 
+## Example Execution
+
+In PowerShell:
+
+```powershell
+PS> livingdoc test-assembly --output-type JSON .\<YourAssembly>.dll  
+Framework: .NET 5.0.15
+<OutputDir>\FeatureData.json was successfully generated.
+
+PS> RemoveSkippedScenarios.ps1 <OutputDir>\TestExecution.json <OutputDir>\FeatureData.json NoSkippedFeatureData.json
+Reading '<OutputDir>\FeatureData.json'
+Reading '<OutputDir>\TestExecution.json'
+Hashing each Test Execution scenario from '<OutputDir>\TestExecution.json'
+1 Test Execution scenario(s) found
+Pruning unexecuted scenarios from Feature Data
+Saving the pruned Feature Data to 'NoSkippedFeatureData.json'
+
+PS> RemoveTags.ps1 -TagsToRemove web, mobile, ignore -FeatureDataPath NoSkippedFeatureData.json -PrunedFeatureDataPath FinalizedFeatureData.json
+Reading 'NoSkippedFeatureData.json'
+Removing tags from Feature Data
+Tags to remove: web, mobile, ignore
+Saving the new Feature Data to 'FinalizedFeatureData.json'
+
+PS> livingdoc feature-data FinalizedFeatureData.json --output-type HTML -t <OutputDir>\TestExecution.json
+Framework: .NET 5.0.15
+<OutputDir>\LivingDoc.html was successfully generated.
+```
+
+
 ## Links
 
 * [SpecFlow](https://specflow.org/)
