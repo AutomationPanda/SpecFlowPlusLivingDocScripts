@@ -48,7 +48,7 @@ Saving the pruned Feature Data to 'result.json'
    
 3. Generate a LivingDoc HTML report with the modified feature data JSON file using `livingdoc feature-data <featureDataJson>`.
 ```
-PS> livingdoc.exe feature-data .\result.json --output-type HTML
+PS> livingdoc.exe feature-data .\result.json --output-type HTML -t <OutputDir>\TestExecution.json
 Framework: .NET 5.0.15
 <OutputDir>\LivingDoc.html was successfully generated.
 
