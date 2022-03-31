@@ -2,7 +2,6 @@
 
 This repository contains PowerShell scripts for modifying
 [SpecFlow+ LivingDoc](https://docs.specflow.org/projects/specflow-livingdoc/en/latest/index.html) reports.
-
 Please read my article,
 [Improving Teamwork with SpecFlow+ LivingDoc](https://automationpanda.com/2021/02/09/improving-teamwork-with-specflow-livingdoc/),
 to learn more about the value LivingDoc provides.
@@ -19,12 +18,6 @@ By default, LivingDoc generates an HTML report.
 However, you can make LivingDoc generate a JSON file containing
 [feature data JSON files](https://docs.specflow.org/projects/specflow-livingdoc/en/latest/LivingDocGenerator/CLI/livingdoc-feature-data.html).
 You can then modify this feature data and use it to generate a modified HTML report.
-The scripts in this repository modify feature data JSON files.
-Here are the steps for using them:
-
-1. Generate a feature data JSON file from a SpecFlow test assembly (.dll) using `livingdoc test-assembly --output-type JSON <testAssembly>`.
-2. Run the feature data JSON modification script(s).
-3. Generate a LivingDoc HTML report with the modified feature data JSON file using `livingdoc feature-data <featureDataJson>`.
 
 
 ## Scripts
@@ -40,6 +33,21 @@ These scripts are written in PowerShell.
    * Takes in a list of tags and a feature data JSON file
    * Removes the tags from all features, scenarios, and examples tables in the feature data
    * Generates a new feature data JSON file without the tags
+
+
+## Steps
+
+The scripts in this repository modify feature data JSON files.
+Here are the steps for using them from PowerShell:
+
+1. Generate a feature data JSON file from a SpecFlow test assembly (.dll).
+   * `livingdoc test-assembly --output-type JSON <testAssembly>`
+2. Remove skipped scenarios from the feature data JSON file.
+   * `RemoveSkippedScenarios.ps1 <testExecutionJson> <featureDataJson> <prunedFeatureDataJson>`
+3. Remove a set of tags from the feature data JSON file.
+   * `RemoveTags.ps1 <tagsToRemove> <featureDataJson> <prunedFeatureDataJson>`
+4. Generate a LivingDoc HTML report with the modified feature data JSON file.
+   * `livingdoc feature-data <featureDataJson>`
 
 
 ## Links
