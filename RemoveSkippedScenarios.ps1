@@ -261,4 +261,4 @@ PruneFeatureData $FeatureData $TestExecutionHashes
 # ----------------------------------------------------------------------------------------------------
 
 Write-Host "Saving the pruned Feature Data to '$PrunedFeatureDataPath'"
-$FeatureData | ConvertTo-Json -Depth 20 | Out-File "$PrunedFeatureDataPath"
+$FeatureData | ConvertTo-Json -Depth 100 | Out-File "$PrunedFeatureDataPath"
